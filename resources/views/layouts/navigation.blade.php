@@ -20,7 +20,16 @@
 
 
 
+
     @if(Auth::guard('admin')->check())
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.credit') }}">
+                <svg class="nav-icon">
+                    <use xlink:href="{{ asset('icons/coreui.svg#cil-speedometer') }}"></use>
+                </svg>
+                {{ __('Credits') }}
+            </a>
+        </li>
         <li class="nav-group {{ (request()->is('admin/user*')) ? 'show' : '' }}" {{ (request()->is('admin/user*')) ? 'aria-expanded="true"' : '' }}>
             <a class="nav-link nav-group-toggle" href="#">
                 <svg class="nav-icon">

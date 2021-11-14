@@ -36,7 +36,11 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\AdminController::class, 'index'])
             ->name('admin.home');
         Route::get('/user/customer', [\App\Http\Controllers\Admin\User\CustomerController::class, 'index'])->name('admin.customer');
+        Route::post('/user/customer/import', [\App\Http\Controllers\Admin\User\CustomerController::class, 'import'])->name('admin.customer.import');
         Route::get('/user/user', [\App\Http\Controllers\Admin\User\UserController::class, 'index'])->name('admin.user');
+
+
+        Route::get('/credit', [\App\Http\Controllers\Admin\CreditController::class, 'index'])->name('admin.credit');
     });
 
 });
