@@ -41,7 +41,6 @@ class CreditController extends Controller
                 ->whereColumn('user_id', 'users.id')
                 ->groupBy('user_id')])
             ->find($id);
-
         $credits = Credit::where('user_id', $id)->paginate(25);
 
             return $credits;
