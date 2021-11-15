@@ -41,6 +41,8 @@ Route::middleware('auth:admin')->group(function () {
 
 
         Route::get('/credit', [\App\Http\Controllers\Admin\CreditController::class, 'index'])->name('admin.credit');
+        Route::get('/credit/{id}', [\App\Http\Controllers\Admin\CreditController::class, 'show'])->name('admin.credit.show');
+        Route::post('/credit/import', [\App\Http\Controllers\Admin\CreditController::class, 'import'])->name('admin.credit.import');
     });
 
 });

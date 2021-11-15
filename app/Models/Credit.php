@@ -9,6 +9,17 @@ class Credit extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'description',
+        'qty',
+        'price',
+        'debt',
+        'credit',
+        'balance',
+        'created_at'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

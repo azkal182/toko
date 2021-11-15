@@ -9,12 +9,20 @@
 
     <h3 class="text-center">Daftar Piutang</h3>
     <h3 class="text-center">Reza Putra</h3>
+
     <div class="card mb-4">
 {{--        <div class="card-header">--}}
 {{--            {{ __('Credits') }}--}}
 {{--        </div>--}}
 
         <div class="card-body">
+        <div>
+                <form action="{{ route('admin.credit.import') }}" enctype="multipart/form-data" method="POST">
+                    @csrf
+                    <input type="file" id="myFile" name="credit">
+                    <input type="submit">
+                </form>
+            </div>
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>

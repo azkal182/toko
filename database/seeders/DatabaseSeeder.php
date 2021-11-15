@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
             AdminTableSeeder::class,
         ]);
 
-        User::factory(20)->create();
+        // User::factory(20)->create();
     }
 }
