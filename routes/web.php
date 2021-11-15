@@ -20,7 +20,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 Route::get('admin/login', [\App\Http\Controllers\Auth\AdminAuthController::class, 'login'])
@@ -50,7 +49,7 @@ Route::middleware('auth:admin')->group(function () {
 
 Route::middleware('auth:web')->group(function () {
     Route::view('about', 'about')->name('about')->middleware('auth');
-
+    Route::get('/home', [\App\Http\Controllers\UserController::class, 'index'])->name('home');
     Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 });

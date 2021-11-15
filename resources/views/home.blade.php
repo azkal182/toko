@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="col-5">
-                    <h2>Rp. 1.500.000</h2>
+                    <h2>@currency($balance)</h2>
                 </div>
                 <div class="col-2">
                     <button class="btn btn-primary">Print</button>
@@ -55,32 +55,57 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Tanggal</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">QTY</th>
+                        <th class="text-end" scope="col">Harga</th>
+                        <th class="text-end" scope="col">debit</th>
+                        <th class="text-end" scope="col">credit</th>
+                        <th class="text-end" scope="col">balance</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                        @foreach($credits as $key => $credit)
+                            <tr style="{{ $credit->balance < 0 ? 'background-color: #fadddd' : '' }}">
+                                <td>{{ $credits->firstItem()  + $key}}</td>
+                                <td>{{ $credit->created_at }}</td>
+                                <td>{{ $credit->description }}</td>
+                                <td>@if($credit->qty > 0)
+                                        @uang($credit->qty)
+                                    @else
+                                        -
+                                    @endif</td>
+                                <td class="text-end">
+                                    @if($credit->price > 0)
+                                        @uang($credit->price)
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                                <td class="text-end">
+                                    @if($credit->debt > 0)
+                                        @uang($credit->debt)
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                                <td class="text-end">
+                                    @if($credit->credit > 0)
+                                        @uang($credit->credit)
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                                <td class="text-end">@currency($credit->balance)</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
+        </div>
+
+        <div class="card-footer">
+            {{ $credits->links() }}
         </div>
     </div>
 @endsection

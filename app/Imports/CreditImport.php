@@ -34,7 +34,7 @@ class CreditImport implements ToModel, WithHeadingRow, WithChunkReading, WithBat
             'debt' => $row['debt'],
             'credit' => $row['credit'],
             'balance' => $row['balance'],
-            'created_at' => $row['created_at'],
+            'created_at' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['created_at']),
         ]);
     }
     public function batchSize(): int
